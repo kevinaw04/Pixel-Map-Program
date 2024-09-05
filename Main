@@ -1,0 +1,94 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("[Portable Pix Map Art Program]");
+        System.out.println("Enter an image width: ");
+        int imageWidth = sc.nextInt();
+        System.out.println("Enter an image height: ");
+        int imageHeight = sc.nextInt();
+        System.out.println("Enter the fill color's red value: ");
+        int redValue = sc.nextInt();
+        System.out.println("enter the fill color's green value: ");
+        int greenValue = sc.nextInt();
+        System.out.println("Enter the fill color's blue value: ");
+        int blueValue= sc.nextInt();
+        Pixel[][] arr = new Pixel[imageWidth][imageHeight];
+        Pixel p = new Pixel(redValue, greenValue, blueValue);
+        for(int i = 0; i < imageWidth; i++) {
+            for (int j = 0; j < imageHeight; j++) {
+                arr[i][j] = p;
+
+
+            }
+
+        }
+        int menuAnswer;
+        do{
+            System.out.println("What will you do?\n" +
+                    "1) Fill in a pixel\n" +
+                    "2) Fill in a line\n" +
+                    "3) Print the image\n" +
+                    "4) Quit");
+             menuAnswer = sc.nextInt();
+            switch(menuAnswer){
+                case 1:
+                    System.out.println("Row: ");
+                    int row = sc.nextInt();
+                    System.out.println("Column: ");
+                    int column = sc.nextInt();
+                    System.out.println("New Red Color: ");
+                   int redColor = sc.nextInt();
+                   System.out.println("New Green Color: ");
+                   int greenColor = sc.nextInt();
+                    System.out.println("New Blue Color: ");
+                    int blueColor = sc.nextInt();
+                    arr[row][column].changeRGB(redColor,greenColor,blueColor);
+                    break;
+                case 2:
+                    System.out.println("Row: ");
+                     row = sc.nextInt();
+                    System.out.println("Column: ");
+                     column = sc.nextInt();
+                    System.out.println("Length: ");
+                    int length = sc.nextInt();
+                    System.out.println("New Red Color: ");
+                     redColor = sc.nextInt();
+                    System.out.println("New Green Color: ");
+                     greenColor = sc.nextInt();
+                    System.out.println("New Blue Color: ");
+                     blueColor = sc.nextInt();
+                     for(int i = 0; i < length; i++) {
+                         arr[row][column + i].changeRGB(redColor,greenColor,blueColor);
+                     }
+
+                    break;
+                case 3:
+                    System.out.println("P3");
+                    System.out.println(imageWidth +" " + imageHeight);
+                    System.out.println("255");
+                    for (int i = 0; i < arr.length; i++){
+                        for(int j = 0; j < arr[0].length; j++){
+                            arr[i][j].printRGB();
+                        }
+                        System.out.println();
+                    }
+                    break;
+                case 4:
+                    System.out.println("P3");
+                    System.out.println(imageWidth +" " + imageHeight);
+                    System.out.println("255");
+                    for (int i = 0; i < arr.length; i++){
+                        for(int j = 0; j < arr[0].length; j++){
+                            arr[i][j].printRGB();
+                        }
+                    }
+                    System.out.println("Closing...");
+                    break;
+            }
+        } while(menuAnswer != 4);
+
+
+
+    }
+}
